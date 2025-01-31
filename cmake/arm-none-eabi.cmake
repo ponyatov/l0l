@@ -12,7 +12,7 @@ add_compile_options(
     $<$<COMPILE_LANGUAGE:CXX>:-nostdinc++>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
-#     $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
+    $<$<COMPILE_LANGUAGE:CXX>:-fno-threadsafe-statics>
     $<$<COMPILE_LANGUAGE:ASM>:-x$<SEMICOLON>assembler-with-cpp>
     $<$<COMPILE_LANGUAGE:ASM>:-MMD>
     $<$<COMPILE_LANGUAGE:ASM>:-MP>

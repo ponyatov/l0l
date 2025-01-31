@@ -28,6 +28,8 @@ file(GLOB_RECURSE C
     "${CWD}/os/src/*.c*"   "${CWD}/os/${OS}/src/*.c*"
     # CortexM/CubeMX
     "${CWD}/hw/${HW}/Core/Src/*.c*"
+    "${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Source/*.c*"
+    "${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Src/*.c*"
 )
 file(GLOB_RECURSE H
     "${CWD}/inc/*.h*"
@@ -37,6 +39,9 @@ file(GLOB_RECURSE H
     "${CWD}/os/inc/*.h*"   "${CWD}/os/${OS}/inc/*.h*"
     # CortexM/CubeMX
     "${CWD}/hw/${HW}/Core/Inc/*.h*"
+    "${CWD}/hw/${HW}/Drivers/CMSIS/Include/*.h*"
+    "${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Include/*.h*"
+    "${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc/*.h*"
 )
 
 include_directories(
@@ -47,6 +52,9 @@ include_directories(
     "${CWD}/os/inc"   "${CWD}/os/${OS}/inc"
     # CortexM/CubeMX
     "${CWD}/hw/${HW}/Core/Inc"
+    "${CWD}/hw/${HW}/Drivers/CMSIS/Include"
+    "${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Include"
+    "${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc"
 )
 
 message("--       dir: " ${CWD})
