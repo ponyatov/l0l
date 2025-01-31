@@ -8,5 +8,5 @@
 
 ##
 
-- runtime relocation liner for OTA updates
-- virtual table patching
+- runtime relocation linker for OTA updates
+- virtual table patching (C++ only)
