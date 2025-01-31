@@ -22,16 +22,58 @@ file(GLOB_RECURSE A
 )
 file(GLOB_RECURSE C
     "${CWD}/src/*.c*"
-    "${CWD}/hw/${HW}/src/*.c*"
-    "${CWD}/cpu/${CPU}/src/*.c*"
-    "${CWD}/arch/${ARCH}/src/*.c*"
-    "${CWD}/os/${OS}/src/*.c*"
+    "${CWD}/hw/src/*.c*"   "${CWD}/hw/${HW}/src/*.c*"
+    "${CWD}/cpu/src/*.c*"  "${CWD}/cpu/${CPU}/src/*.c*"
+    "${CWD}/arch/src/*.c*" "${CWD}/arch/${ARCH}/src/*.c*"
+    "${CWD}/os/src/*.c*"   "${CWD}/os/${OS}/src/*.c*"
+    # CortexM/CubeMX
+    "${CWD}/hw/${HW}/Core/Src/*.c*"
 )
 file(GLOB_RECURSE H
     "${CWD}/inc/*.h*"
-    "${CWD}/hw/${HW}/inc/*.h*"
-    "${CWD}/cpu/${CPU}/inc/*.h*"
-    "${CWD}/arch/${ARCH}/inc/*.h*"
-    "${CWD}/os/${OS}/inc/*.h*"
+    "${CWD}/hw/inc/*.h*"   "${CWD}/hw/${HW}/inc/*.h*"
+    "${CWD}/cpu/inc/*.h*"  "${CWD}/cpu/${CPU}/inc/*.h*"
+    "${CWD}/arch/inc/*.h*" "${CWD}/arch/${ARCH}/inc/*.h*"
+    "${CWD}/os/inc/*.h*"   "${CWD}/os/${OS}/inc/*.h*"
+    # CortexM/CubeMX
+    "${CWD}/hw/${HW}/Core/Inc/*.h*"
 )
 
+include_directories(
+    ${INC} ${TMP} ${SRC}
+    "${CWD}/hw/inc"   "${CWD}/hw/${HW}/inc"
+    "${CWD}/cpu/inc"  "${CWD}/cpu/${CPU}/inc"
+    "${CWD}/arch/inc" "${CWD}/arch/${ARCH}/inc"
+    "${CWD}/os/inc"   "${CWD}/os/${OS}/inc"
+    # CortexM/CubeMX
+    "${CWD}/hw/${HW}/Core/Inc"
+)
+
+message("--       dir: " ${CWD})
+message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
+message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH})
+message("--        os: " ${OS})
+message("--   startup: " ${A})
+message("--    binary: " ${BIN_OUTPUT_NAME})
+
+add_executable(${CMAKE_PROJECT_NAME}
+    ${C} ${H} ${A} ${LD}
+)
+
+target_link_libraries(${CMAKE_PROJECT_NAME})
+
+# target install
+set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${BIN_OUTPUT_NAME})
+install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+# cross compiler binaries
+set(ELF ${CMAKE_INSTALL_PREFIX}/${BIN_OUTPUT_NAME}.elf)
+set(DFU ${CMAKE_INSTALL_PREFIX}/${BIN_OUTPUT_NAME}.dfu)
+
+add_custom_target(clean_all
+    COMMAND rm -rf
+        ${ELF} ${DFU}
+        ${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}*
+        ${CMAKE_BINARY_DIR}
+        # ${TMP}/${CMAKE_PROJECT_NAME}*
+)
