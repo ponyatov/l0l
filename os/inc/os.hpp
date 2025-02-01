@@ -12,6 +12,12 @@ extern void setup() __attribute__((weak));
 extern void loop() __attribute__((weak));
 /// @}
 
+#ifdef POSIX
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#endif // POSIX
+
 #ifdef LINUX
 #include "linux.hpp"
 #endif

@@ -1,4 +1,16 @@
 #include "os.hpp"
 #include "cli.hpp"
 
-void cli(){ fprintf(stderr,"\tcli\n");}
+%%machine cli;
+%%write data;
+
+void cli(char* p, char *pe){ //
+    fprintf(stderr,"\tcli %p %p\n",p,pe);
+    int cs = 0;
+    %%write init;
+    %%write exec;
+    }
+
+%%{
+    main := '#' ;
+}%%

@@ -67,14 +67,14 @@
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 
     // cmake
-    "cmake.sourceDirectory"  : "${workspaceFolder}",
-    "cmake.buildDirectory"   : "${workspaceFolder}/tmp/${workspaceFolderBasename}",
-    "cmake.generator"        : "Unix Makefiles",
-    "cmake.parallelJobs"     : 4,
-    "cmake.configureSettings": {
-        "CMAKE_VERBOSE_MAKEFILE": true
-    },
-    "cmake.useCMakePresets"     : "always",
+    "cmake.sourceDirectory" : "${workspaceFolder}",
+    "cmake.buildDirectory"  : "${workspaceFolder}/tmp/${workspaceFolderBasename}",
+    "cmake.generator"       : "Unix Makefiles",
+    "cmake.parallelJobs"    : 4,
+    "cmake.useCMakePresets" : "always",
+    "cmake.buildBeforeRun"  : true,
+    "cmake.debugConfig"     : {
+        "args": [ "${workspaceFolder}/lib/${workspaceFolderBasename}.ini" ] },
 
     // MinGW/MSYS2
     "terminal.integrated.defaultProfile.windows":  "UCRT64",
