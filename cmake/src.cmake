@@ -41,7 +41,7 @@ file(GLOB H
     # ${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc/*.h*
 )
 
-file(GLOB INCDIRS
+file(GLOB INC
     RELATIVE ${CMAKE_SOURCE_DIR}
     inc tmp src
     # cross
@@ -53,7 +53,7 @@ file(GLOB INCDIRS
     lib/inc lib/*/inc
 )
 include_directories(
-    ${INCDIRS}
+    ${INC}
     # # CortexM/CubeMX
     # ${CWD}/hw/${HW}/Core/Inc
     # ${CWD}/hw/${HW}/Drivers/CMSIS/Include

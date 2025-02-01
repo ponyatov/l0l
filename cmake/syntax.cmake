@@ -24,11 +24,3 @@ foreach(RAGEL_FILE ${RL})
     )
 endforeach()
 
-# # list(TRANSFORM RL REPLACE "[.]ragel$" ".cpp.ragel")
-# # list(TRANSFORM RL REPLACE ".+\/" "tmp/")
-
-# # RAGEL_TARGET(cli
-# #     lib/cli/src/cli.ragel
-# #     ${CMAKE_SOURCE_DIR}/tmp/cli.ragel.cpp
-# #     COMPILE_FLAGS -G2
-# # )
