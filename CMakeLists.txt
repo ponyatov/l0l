@@ -57,6 +57,8 @@ include_directories(
     "${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc"
 )
 
+include(syntax)
+
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
 message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH})
@@ -66,6 +68,7 @@ message("--    binary: " ${BIN_OUTPUT_NAME})
 
 add_executable(${CMAKE_PROJECT_NAME}
     ${C} ${H} ${A} ${LD}
+    ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
 )
 
 target_link_libraries(${CMAKE_PROJECT_NAME})
@@ -83,5 +86,5 @@ add_custom_target(clean_all
         ${ELF} ${DFU}
         ${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}*
         ${CMAKE_BINARY_DIR}
-        # ${TMP}/${CMAKE_PROJECT_NAME}*
+        ${TMP}/${CMAKE_PROJECT_NAME}*
 )
