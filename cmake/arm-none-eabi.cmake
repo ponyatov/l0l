@@ -6,7 +6,6 @@ set(CMAKE_CROSS_COMPILING  true)
 include(cmake/any_toolchain.cmake)
 
 add_compile_options(
-    -nostdlib
     -ffunction-sections -fdata-sections
     -DCORTEX -D${SERIES}
     $<$<COMPILE_LANGUAGE:CXX>:-nostdinc++>
@@ -20,7 +19,6 @@ add_compile_options(
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 add_link_options(
-    -nostdlib
     -T ${CMAKE_SOURCE_DIR}/hw/${HW}/${CPU_}x_FLASH.ld
     --specs=nano.specs
     -Wl,--start-group -lc -lm -lnosys   -Wl,--end-group
