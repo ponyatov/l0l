@@ -19,6 +19,12 @@ extern void cli(char* filename);
 /// @param[in] pe data end pointer (end of data)
 extern void cli(char* p, char* pe);
 
+extern int cli_cs;     ///< @brief current state
+extern char* cli_eof;  ///< @brief end of file pointer
+extern int cli_act;    ///<
+extern char* cli_ts;   ///< @brief token start
+extern char* cli_te;   ///< @brief token end
+
 /// @}
 
 /// @name commands
