@@ -16,26 +16,16 @@ message("--     ragel: " "${RL}")
 message("--    parser: " "${CP}")
 
 add_executable(${CMAKE_PROJECT_NAME}
-    ${C} ${H} ${S} ${LD}
-    ${CP} ${CH}
-    # ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
+    ${C}  ${H}  # C/C++ source
+    ${S}  ${LD} # embedded/lowlevel
+    ${CP} ${CH} # parsers
 )
 
-target_link_libraries(${CMAKE_PROJECT_NAME})
+# target_link_libraries(${CMAKE_PROJECT_NAME} -static)
 
 # target install
 set_target_properties(${CMAKE_PROJECT_NAME} PROPERTIES OUTPUT_NAME ${BIN_OUTPUT_NAME})
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${CMAKE_INSTALL_PREFIX})
 
-# cross compiler binaries
-set(ELF ${CMAKE_INSTALL_PREFIX}/${BIN_OUTPUT_NAME}.elf)
-set(DFU ${CMAKE_INSTALL_PREFIX}/${BIN_OUTPUT_NAME}.dfu)
-
-add_custom_target(clean_all
-    COMMAND rm -rf
-        ${ELF} ${DFU}
-        ${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}*
-        ${CMAKE_BINARY_DIR}
-        ${TMP}/${CMAKE_PROJECT_NAME}*
-        ${TMP}/*.ragel.*
-)
+include(cross)
+include(clean)
