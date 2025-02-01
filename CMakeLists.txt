@@ -17,6 +17,7 @@ set(TMP ${CWD}/tmp)
 
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
+message("--      host: " ${CMAKE_HOST_SYSTEM_NAME}-${CMAKE_HOST_SYSTEM_VERSION})
 message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH} " os:" ${OS})
 message("--   startup: " "${S}")
 message("--    binary: " ${BIN_OUTPUT_NAME})
@@ -26,7 +27,7 @@ message("--    parser: " "${CP}")
 add_executable(${CMAKE_PROJECT_NAME}
     ${C} ${H} ${S} ${LD}
     ${CP} ${CH}
-    ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
+    # ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
 )
 
 target_link_libraries(${CMAKE_PROJECT_NAME})
