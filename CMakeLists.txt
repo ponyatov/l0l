@@ -1,19 +1,10 @@
 cmake_minimum_required(VERSION 3.22)
 get_filename_component(CMAKE_PROJECT_NAME ${CMAKE_SOURCE_DIR} NAME_WE)
 project(${CMAKE_PROJECT_NAME} LANGUAGES C CXX ASM)
-# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+
 include(version)
-
-set(CWD ${CMAKE_SOURCE_DIR})
-set(BIN ${CWD}/bin)
-set(CMAKE_INSTALL_PREFIX ${BIN})
-set(DOC ${CWD}/doc)
-set(LIB ${CWD}/lib)
-set(INC ${CWD}/inc)
-set(SRC ${CWD}/src)
-set(TMP ${CWD}/tmp)
-
 include(src)
+include(syntax)
 
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
