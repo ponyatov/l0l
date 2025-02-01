@@ -9,6 +9,15 @@ file(GLOB RL
     src/*.ragel lib/src/*.ragel lib/*/src/*.ragel
 )
 
+foreach(R ${RL})
+    string(REGEX REPLACE
+        ".+\/([a-z]+)\.ragel$"
+        "tmp/\\1.ragel.cpp"
+        RC ${R})
+    message("------- " ${R} "\t\t" ${RC})
+endforeach()
+
+
 # list(TRANSFORM RL REPLACE "[.]ragel$" ".cpp.ragel")
 # list(TRANSFORM RL REPLACE ".+\/" "tmp/")
 
