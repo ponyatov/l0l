@@ -1,3 +1,5 @@
+include(arch/cortexM.cmake)
+
 add_compile_options(
 )
 
