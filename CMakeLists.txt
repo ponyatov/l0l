@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 get_filename_component(CMAKE_PROJECT_NAME ${CMAKE_SOURCE_DIR} NAME_WE)
 project(${CMAKE_PROJECT_NAME} LANGUAGES C CXX ASM)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 include(version)
 
 set(CWD ${CMAKE_SOURCE_DIR})
@@ -13,73 +13,18 @@ set(INC ${CWD}/inc)
 set(SRC ${CWD}/src)
 set(TMP ${CWD}/tmp)
 
-file(GLOB_RECURSE LD
-    ${CWD}/hw/${HW}/*.ld
-)
-file(GLOB_RECURSE A
-    ${CWD}/src/*.s*
-    ${CWD}/hw/${HW}/*.s*
-)
-file(GLOB_RECURSE C
-    ${CWD}/src/*.c*
-    ${CWD}/hw/src/*.c*   ${CWD}/hw/${HW}/src/*.c*
-    ${CWD}/cpu/src/*.c*  ${CWD}/cpu/${CPU}/src/*.c*
-    ${CWD}/arch/src/*.c* ${CWD}/arch/${ARCH}/src/*.c*
-    ${CWD}/os/src/*.c*   ${CWD}/os/${OS}/src/*.c*
-    # CortexM/CubeMX
-    ${CWD}/hw/${HW}/Core/Src/*.c*
-    ${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Source/*.c*
-    ${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Src/*.c*
-    # libs
-    # ${CWD}/lib/src/*.c*  ${CWD}/lib/*/src/*.c*
-)
-file(GLOB_RECURSE H
-    ${CWD}/inc/*.h*
-    ${CWD}/hw/inc/*.h*   ${CWD}/hw/${HW}/inc/*.h*
-    ${CWD}/cpu/inc/*.h*  ${CWD}/cpu/${CPU}/inc/*.h*
-    ${CWD}/arch/inc/*.h* ${CWD}/arch/${ARCH}/inc/*.h*
-    ${CWD}/os/inc/*.h*   ${CWD}/os/${OS}/inc/*.h*
-    # CortexM/CubeMX
-    ${CWD}/hw/${HW}/Core/Inc/*.h*
-    ${CWD}/hw/${HW}/Drivers/CMSIS/Include/*.h*
-    ${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Include/*.h*
-    ${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc/*.h*
-    # libs
-    ${CWD}/lib/inc/*.h*  ${CWD}/lib/*/inc/*.h*
-)
-
-include_directories(
-    ${INC} ${TMP} ${SRC}
-    ${CWD}/hw/inc   ${CWD}/hw/${HW}/inc
-    ${CWD}/cpu/inc  ${CWD}/cpu/${CPU}/inc
-    ${CWD}/arch/inc ${CWD}/arch/${ARCH}/inc
-    ${CWD}/os/inc   ${CWD}/os/${OS}/inc
-    # CortexM/CubeMX
-    ${CWD}/hw/${HW}/Core/Inc
-    ${CWD}/hw/${HW}/Drivers/CMSIS/Include
-    ${CWD}/hw/${HW}/Drivers/CMSIS/Device/ST/${SERIES}xx/Include
-    ${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc
-    # libs
-    ${CWD}/lib/inc ${CWD}/lib/*/inc
-)
-
-file(GLOB IC
-    RELATIVE ${CMAKE_SOURCE_DIR}
-    lib/inc lib/*/inc
-)
-
-include(syntax)
+# include(syntax)
 
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
 message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH} " os:" ${OS})
-message("--   startup: " "${A}")
+message("--   startup: " "${S}")
 message("--    binary: " ${BIN_OUTPUT_NAME})
 message("--   parsers: " "${RL}")
-message("--  includes: " "${IC}")
+message("--  includes: " "${H}")
 
 add_executable(${CMAKE_PROJECT_NAME}
-    ${C} ${H} ${A} ${LD}
+    ${C} ${H} ${S} ${LD}
     ${RAGEL_cli_OUTPUTS}
     ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
 )

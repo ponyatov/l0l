@@ -1,10 +1,12 @@
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+
 find_package(RAGEL REQUIRED)
 find_package(FLEX  REQUIRED)
 find_package(BISON REQUIRED)
 
-file(GLOB_RECURSE RL
+file(GLOB RL
     RELATIVE ${CMAKE_SOURCE_DIR}
-    /src/*.ragel
+    src/*.ragel lib/src/*.ragel lib/*/src/*.ragel
 )
 
 RAGEL_TARGET(cli
