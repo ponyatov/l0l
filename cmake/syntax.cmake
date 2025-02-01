@@ -11,7 +11,7 @@ file(GLOB RL
 
 foreach(R ${RL})
     string(REGEX REPLACE
-        ".+\/([a-z]+)\.ragel$"
+        ".+\/(.+)\.ragel$"
         "tmp/\\1.ragel.cpp"
         RC ${R})
     message("------- " ${R} "\t\t" ${RC})
