@@ -13,7 +13,7 @@ set(INC ${CWD}/inc)
 set(SRC ${CWD}/src)
 set(TMP ${CWD}/tmp)
 
-# include(syntax)
+include(src)
 
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
