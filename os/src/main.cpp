@@ -28,7 +28,7 @@ void setup() {  //
 
 #include "cli.hpp"
 
-void loop() __attribute__((weak)) {
+void loop() {
     fprintf(stderr, "loop:\n");
     bye();
 }

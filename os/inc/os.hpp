@@ -8,7 +8,6 @@
 /// @{
 extern int main(int argc, char *argv[]);
 extern void arg(int argc, char *argv) __attribute__((weak));
-;
 extern void setup() __attribute__((weak));
 extern void loop() __attribute__((weak));
 /// @}

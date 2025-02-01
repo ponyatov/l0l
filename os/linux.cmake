@@ -1,3 +1,5 @@
+set(CMAKE_EXECUTABLE_SUFFIX "")
+
 add_compile_options(
 )
 
