@@ -63,9 +63,9 @@ include_directories(
     ${CWD}/lib/inc ${CWD}/lib/*/inc
 )
 
-file(GLOB_RECURSE IC
-    # LIST_DIRECTORIES true
-    inc/
+file(GLOB IC
+    RELATIVE ${CMAKE_SOURCE_DIR}
+    lib/inc lib/*/inc
 )
 
 include(syntax)
