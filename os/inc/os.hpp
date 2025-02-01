@@ -16,7 +16,7 @@ extern void loop() __attribute__((weak));
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#endif // POSIX
+#endif  // POSIX
 
 #ifdef LINUX
 #include "linux.hpp"

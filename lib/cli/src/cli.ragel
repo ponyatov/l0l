@@ -2,15 +2,19 @@
 #include "cli.hpp"
 
 %%machine cli;
+
 %%write data;
 
 void cli(char* p, char *pe){ //
+#ifdef POSIX
     fprintf(stderr,"\tcli %p %p\n",p,pe);
+#endif
     int cs = 0;
     %%write init;
     %%write exec;
-    }
+}
 
 %%{
-    main := '#' ;
+    c = any ;
+    main := c* ;
 }%%

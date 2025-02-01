@@ -8,12 +8,25 @@
 /// @{
 #ifdef POSIX
 extern char* yyfile;  ///< current file name
-extern int yyin;    ///< current file handler
+extern int yyin;      ///< current file handler
 #endif
+
+/// @brief parse disk file
+extern void cli(char* filename);
+
+/// @brief parse string in memory
+/// @param[in] p data pointer (current position)
+/// @param[in] pe data end pointer (end of data)
+extern void cli(char* p, char* pe);
+
 /// @}
 
-extern void cli(char* filename);  ///< process command line
-extern void cli(char* p, char *pe);///< process string in memory
+/// @name commands
+/// @{
 
-extern void bye();  ///< `( -- )` stop system
+extern void nop();   ///< `( -- )` do nothing: empty command
+extern void halt();  ///< `( -- )` stop system
+
+/// @}
+
 /// @}

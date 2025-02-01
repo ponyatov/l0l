@@ -1,12 +1,15 @@
 #include "os.hpp"
 #include "cli.hpp"
 
-void bye() {  //
+char* yyfile = nullptr;
+int yyin = 0;
+
+#ifdef POSIX
+
+void halt() {
     fprintf(stderr, "\tbye\n\n");
     exit(0);
 }
-
-#ifdef POSIX
 
 void cli(char* filename) {
     yyfile = filename;
@@ -28,6 +31,4 @@ void cli(char* filename) {
     yyfile = nullptr;
 }
 
-char* yyfile = nullptr;
-int yyin = 0;
 #endif  // POSIX
