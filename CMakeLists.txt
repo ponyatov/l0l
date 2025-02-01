@@ -13,6 +13,9 @@ set(INC ${CWD}/inc)
 set(SRC ${CWD}/src)
 set(TMP ${CWD}/tmp)
 
+file(GLOB_RECURSE RL
+    "${CWD}/**/*.ragel"
+)
 file(GLOB_RECURSE LD
     "${CWD}/hw/${HW}/*.ld"
 )
@@ -68,11 +71,13 @@ include(syntax)
 message("--       dir: " ${CWD})
 message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
 message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH} " os:" ${OS})
-message("--   startup: " ${A})
+message("--   startup: " "${A}")
 message("--    binary: " ${BIN_OUTPUT_NAME})
+message("--   parsers: " "${RL}")
 
 add_executable(${CMAKE_PROJECT_NAME}
     ${C} ${H} ${A} ${LD}
+    ${RAGEL_cli_OUTPUTS}
     ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
 )
 

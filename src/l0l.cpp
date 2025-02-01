@@ -9,3 +9,5 @@ struct point3d {
 void point3d_print(point3d* p) {  //
     printf("p3d(%g;%g;%g)\n", p->x, p->y, p->z);
 }
+
+void loop() { abort(); }

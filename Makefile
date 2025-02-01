@@ -6,4 +6,5 @@ include mk/src.mk
 include mk/all.mk
 include mk/format.mk
 include mk/rule.mk
+include mk/doc.mk
 include mk/install.mk

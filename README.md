@@ -6,7 +6,7 @@
 - github:  https://github.com/ponyatov/l0l
 - gitflic: https://gitflic.ru/project/dponyatov/lol
 
-##
+## features
 
 - runtime relocation linker for OTA updates
 - virtual table patching (C++ only)
