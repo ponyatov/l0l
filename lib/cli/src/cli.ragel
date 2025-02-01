@@ -1,1 +1,3 @@
 #include "cli.hpp"
+
+void cli(){ fprintf(stderr,"\tcli\n");}

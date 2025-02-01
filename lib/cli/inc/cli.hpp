@@ -4,5 +4,7 @@
 /// @ingroup core
 /// @{
 
-extern void bye(); ///< `( -- )` stop system
+extern void cli();  ///< `( -- )` process command line
+
+extern void bye();  ///< `( -- )` stop system
 /// @}

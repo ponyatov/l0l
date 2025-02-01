@@ -31,5 +31,6 @@ void setup() {  //
 
 void loop() {
     fprintf(stderr, "loop:\n");
+    cli();
     bye();
 }

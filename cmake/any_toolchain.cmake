@@ -104,4 +104,4 @@ include_directories(
     # ${CWD}/hw/${HW}/Drivers/${SERIES}xx_HAL_Driver/Inc
 )
 
-include(cmake/syntax.cmake)
+include(syntax)

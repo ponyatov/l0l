@@ -20,12 +20,12 @@ message("-- toolchain: " ${CMAKE_CXX_COMPILER} " @ " ${CMAKE_TOOLCHAIN_FILE})
 message("--    target: " "hw:" ${HW} " cpu:" ${CPU} " arch:" ${ARCH} " os:" ${OS})
 message("--   startup: " "${S}")
 message("--    binary: " ${BIN_OUTPUT_NAME})
-message("--   parsers: " "${RL}")
-message("--  includes: " "${H}")
+message("--     ragel: " "${RL}")
+message("--    parser: " "${CP}")
 
 add_executable(${CMAKE_PROJECT_NAME}
     ${C} ${H} ${S} ${LD}
-    ${RAGEL_cli_OUTPUTS}
+    ${CP} ${CH}
     ${FLEX_lex_OUTPUTS} ${BISON_yacc_OUTPUTS}
 )
 
@@ -45,4 +45,5 @@ add_custom_target(clean_all
         ${CMAKE_INSTALL_PREFIX}/${CMAKE_PROJECT_NAME}*
         ${CMAKE_BINARY_DIR}
         ${TMP}/${CMAKE_PROJECT_NAME}*
+        ${TMP}/*.ragel.*
 )
