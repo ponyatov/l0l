@@ -1,34 +1,27 @@
+#include <cstdint>
+
 %%machine hex;
-
-%%access       hex_;
-%%variable cs  hex_cs;
-%%variable eof hex_eof;
-%%variable ts  hex_ts;
-%%variable te  hex_te;
-
 %%write data;
 
-static int   hex_cs  = 0;
-static int   hex_act = 0;
-static char* hex_eof = nullptr;
-static char* hex_ts  = nullptr;
-static char* hex_te  = nullptr;
-
-static int ret = 0;
+static uint32_t ret      = 0;    ///< result number
+static     bool positive = true; ///< sign flag
 
 int hex(char *p, char *pe) {
     ret = 0;
+    int cs = 0, act = 0;
+    char *ts = nullptr, *te = nullptr, *eof = pe;
     %%write init;
     %%write exec;
-    return ret;
+    if (positive) return +ret; else return -ret;
 }
 
 %%{
-    plus  = '+';
-    minus = '-';
-
     main := |*
-        plus  => { ret = +ret; } ;
-        minus => { ret = -ret; } ;
+        "0x"  => {                                        };
+        '+'   => { positive =  true;                      };
+        '-'   => { positive = false;                      };
+        [0-9] => { ret = ret << 4 | (ts[0] - '0'       ); };
+        [a-f] => { ret = ret << 4 | (ts[0] - 'a' + 0x0A); };
+        [A-F] => { ret = ret << 4 | (ts[0] - 'A' + 0x0A); };
     *|;
 }%%

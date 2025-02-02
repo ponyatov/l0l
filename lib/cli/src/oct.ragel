@@ -1,34 +1,25 @@
+#include <cstdint>
+
 %%machine oct;
-
-%%access       oct_;
-%%variable cs  oct_cs;
-%%variable eof oct_eof;
-%%variable ts  oct_ts;
-%%variable te  oct_te;
-
 %%write data;
 
-static int   oct_cs  = 0;
-static int   oct_act = 0;
-static char* oct_eof = nullptr;
-static char* oct_ts  = nullptr;
-static char* oct_te  = nullptr;
-
-static int ret = 0;
+static uint32_t ret      = 0;    ///< result number
+static     bool positive = true; ///< sign flag
 
 int oct(char *p, char *pe) {
     ret = 0;
+    int cs = 0, act = 0;
+    char *ts = nullptr, *te = nullptr, *eof = pe;
     %%write init;
     %%write exec;
-    return ret;
+    if (positive) return +ret; else return -ret;
 }
 
 %%{
-    plus  = '+';
-    minus = '-';
-
     main := |*
-        plus  => { ret = +ret; } ;
-        minus => { ret = -ret; } ;
+        "0o"  => {                                  };
+        '+'   => { positive =  true;                };
+        '-'   => { positive = false;                };
+        [0-7] => { ret = ret << 3 | (ts[0] - '0' ); };
     *|;
 }%%
