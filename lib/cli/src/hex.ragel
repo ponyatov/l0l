@@ -1,4 +1,4 @@
-#include <cstdint>
+#include <stdint.h>
 
 %%machine hex;
 %%write data;

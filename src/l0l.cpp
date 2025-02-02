@@ -1,6 +1,7 @@
 #include "os.hpp"
 #include "cli.hpp"
 
+#ifdef POSIX
 struct point3d {
     float x;
     float y;
@@ -10,12 +11,18 @@ struct point3d {
 void point3d_print(point3d* p) {  //
     printf("p3d(%g;%g;%g)\n", p->x, p->y, p->z);
 }
+#endif
 
-void setup() { fprintf(stderr, "\tdone\n"); }
+void setup() {
+#ifdef POSIX
+    fprintf(stderr, "\tdone\n");
+#endif
+}
 
 void arg(int argc, char* argv) {
-    fprintf(stderr, "\t%i\t%s\n", argc, argv);
+#ifdef POSIX
     if (argc) cli(argv);
+#endif
 }
 
 void loop() { halt(); }
