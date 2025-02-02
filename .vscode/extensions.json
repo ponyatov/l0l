@@ -21,6 +21,7 @@
         "daohong-emilio.yash",
         "rreverser.ragel",
         // embedded
+        "ms-azuretools.vscode-docker",
         "ms-vscode.hexeditor",
         "zixuanwang.linkerscript",
         "dan-c-underwood.arm",
