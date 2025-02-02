@@ -1,4 +1,5 @@
 #include "os.hpp"
+#include "cli.hpp"
 
 struct point3d {
     float x;
@@ -10,4 +11,11 @@ void point3d_print(point3d* p) {  //
     printf("p3d(%g;%g;%g)\n", p->x, p->y, p->z);
 }
 
-void loop() { abort(); }
+void setup() { fprintf(stderr, "\tdone\n"); }
+
+void arg(int argc, char* argv) {
+    fprintf(stderr, "%i %s\n", argc, argv);
+    if (argc) cli(argv);
+}
+
+void loop() { halt(); }
