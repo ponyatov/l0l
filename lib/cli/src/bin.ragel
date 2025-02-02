@@ -1,34 +1,26 @@
+#include <cstdint>
+
 %%machine bin;
-
-%%access       bin_;
-%%variable cs  bin_cs;
-%%variable eof bin_eof;
-%%variable ts  bin_ts;
-%%variable te  bin_te;
-
 %%write data;
 
-static int   bin_cs  = 0;
-static int   bin_act = 0;
-static char* bin_eof = nullptr;
-static char* bin_ts  = nullptr;
-static char* bin_te  = nullptr;
-
-static int ret = 0;
+static uint32_t ret      = 0;    ///< result number
+static     bool positive = true; ///< sign flag
 
 int bin(char *p, char *pe) {
     ret = 0;
+    int cs = 0, act = 0;
+    char *ts = nullptr, *te = nullptr, *eof = pe;
     %%write init;
     %%write exec;
-    return ret;
+    if (positive) return +ret; else return -ret;
 }
 
 %%{
-    plus  = '+';
-    minus = '-';
-
     main := |*
-        plus  => { ret = +ret; } ;
-        minus => { ret = -ret; } ;
+        "0b" => {                     };
+        '+'  => { positive =  true;   };
+        '-'  => { positive = false;   };
+        '0'  => { ret = ret << 1 | 0; };
+        '1'  => { ret = ret << 1 | 1; };
     *|;
 }%%
