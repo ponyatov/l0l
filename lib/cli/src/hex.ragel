@@ -1,0 +1,34 @@
+%%machine hex;
+
+%%access       hex_;
+%%variable cs  hex_cs;
+%%variable eof hex_eof;
+%%variable ts  hex_ts;
+%%variable te  hex_te;
+
+%%write data;
+
+static int   hex_cs  = 0;
+static int   hex_act = 0;
+static char* hex_eof = nullptr;
+static char* hex_ts  = nullptr;
+static char* hex_te  = nullptr;
+
+static int ret = 0;
+
+int hex(char *p, char *pe) {
+    ret = 0;
+    %%write init;
+    %%write exec;
+    return ret;
+}
+
+%%{
+    plus  = '+';
+    minus = '-';
+
+    main := |*
+        plus  => { ret = +ret; } ;
+        minus => { ret = -ret; } ;
+    *|;
+}%%

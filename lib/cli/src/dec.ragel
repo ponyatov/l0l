@@ -1,0 +1,36 @@
+%%machine dec;
+
+%%access       dec_;
+%%variable cs  dec_cs;
+%%variable eof dec_eof;
+%%variable ts  dec_ts;
+%%variable te  dec_te;
+
+%%write data;
+
+static int   dec_cs  = 0;
+static int   dec_act = 0;
+static char* dec_eof = nullptr;
+static char* dec_ts  = nullptr;
+static char* dec_te  = nullptr;
+
+static int ret = 0;
+static bool positive = true;
+
+int dec(char *p, char *pe) {
+    ret = 0;
+    %%write init;
+    %%write exec;
+    if (positive) return +ret; else return -ret;
+}
+
+%%{
+    plus  = '+';
+    minus = '-';
+
+    main := |*
+        plus  => { positive =  true; } ;
+        minus => { positive = false; } ;
+        [0-9] => { ret = ret * 10 + (*dec_ts-'0'); };
+    *|;
+}%%

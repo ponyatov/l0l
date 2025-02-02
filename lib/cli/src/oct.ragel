@@ -1,0 +1,34 @@
+%%machine oct;
+
+%%access       oct_;
+%%variable cs  oct_cs;
+%%variable eof oct_eof;
+%%variable ts  oct_ts;
+%%variable te  oct_te;
+
+%%write data;
+
+static int   oct_cs  = 0;
+static int   oct_act = 0;
+static char* oct_eof = nullptr;
+static char* oct_ts  = nullptr;
+static char* oct_te  = nullptr;
+
+static int ret = 0;
+
+int oct(char *p, char *pe) {
+    ret = 0;
+    %%write init;
+    %%write exec;
+    return ret;
+}
+
+%%{
+    plus  = '+';
+    minus = '-';
+
+    main := |*
+        plus  => { ret = +ret; } ;
+        minus => { ret = -ret; } ;
+    *|;
+}%%

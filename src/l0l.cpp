@@ -14,7 +14,7 @@ void point3d_print(point3d* p) {  //
 void setup() { fprintf(stderr, "\tdone\n"); }
 
 void arg(int argc, char* argv) {
-    fprintf(stderr, "%i %s\n", argc, argv);
+    fprintf(stderr, "\t%i\t%s\n", argc, argv);
     if (argc) cli(argv);
 }
 
