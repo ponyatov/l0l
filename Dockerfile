@@ -4,8 +4,6 @@ FROM busybox:glibc
 USER    nobody
 WORKDIR /home
 
-ENV MODULE=l0l
-
 COPY ./bin              /home/bin/
 COPY ./doc/*.md         /home/doc/
 COPY ./doc/*.xml        /home/doc/
@@ -14,6 +12,7 @@ COPY ./etc              /etc/
 COPY ./inc              /home/inc/
 COPY ./lib              /home/lib/
 COPY ./src              /home/src/
+COPY ./tmp/.gitignore   /home/tmp/
 COPY ./tmp/*.?pp        /home/tmp/
 COPY ./CMake*           /home/
 COPY ./cmake            /home/cmake/
@@ -24,8 +23,4 @@ COPY ./cpu              /home/cpu/
 COPY ./arch             /home/arch/
 COPY ./os               /home/os/
 
-# CMD ["ls","-la","/"]
-# RUN opkg-install python3
-
 CMD ["/bin/sh"]
-# CMD ["/home/bin/l0l_pc_dponyatov","/home/lib/l0l.ini"]
