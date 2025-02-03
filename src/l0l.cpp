@@ -21,6 +21,7 @@ void setup() {
 
 void arg(int argc, char* argv) {
 #ifdef POSIX
+    fprintf(stderr, "\targ[%i] = <%s>\n", argc, argv);
     if (argc) cli(argv);
 #endif
 }
