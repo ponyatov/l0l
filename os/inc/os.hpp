@@ -22,3 +22,7 @@ extern void loop() ;
 #ifdef LINUX
 #include "linux.hpp"
 #endif
+
+#ifdef MINGW
+#include "mingw.hpp"
+#endif
