@@ -1,7 +1,6 @@
 set(CMAKE_SYSTEM_NAME       Linux)
 set(CMAKE_SYSTEM_PROCESSOR  x86_64)
 set(TOOLCHAIN_PREFIX        ${ARCH}-${OS}-musl)
-# set(TOOLCHAIN_PREFIX        musl)
 
 add_compile_options(
     "-march=native"
@@ -9,5 +8,6 @@ add_compile_options(
 
 include(any_toolchain)
 
-# set(CMAKE_C_COMPILER   musl-gcc)
-# set(CMAKE_LINKER       musl-gcc)
+set(CMAKE_ASM_COMPILER  ${CMAKE_C_COMPILER})
+set(CMAKE_LINKER        ${CMAKE_C_COMPILER})
+set(CMAKE_CXX_COMPILER  ${CMAKE_C_COMPILER})

@@ -1,4 +1,5 @@
-FROM busybox:glibc
+FROM alpine
+# FROM busybox:glibc
 # FROM frolvlad/alpine-glibc
 
 USER    nobody
