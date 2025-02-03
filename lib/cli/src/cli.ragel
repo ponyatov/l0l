@@ -37,7 +37,7 @@ static char *id(char *ts, char *te) {
 void cli(char* p, char *pe){ //
     cli_eof = pe;
 #ifdef POSIX
-    fprintf(stderr, "\tcli %p %p 5i\n\t\t", p, pe, pe-p);
+    fprintf(stderr, "\tcli %p %p %i\n\t\t", p, pe, pe-p);
 #endif
     %%write init;
     %%write exec;
