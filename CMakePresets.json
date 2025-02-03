@@ -39,10 +39,11 @@
             "binaryDir": "${sourceDir}/tmp/${presetName}",
             "generator": "Unix Makefiles",
             "cacheVariables": {
-                "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin",
-                "CMAKE_COLOR_DIAGNOSTICS": true,
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_VERBOSE_MAKEFILE": true
+                "CMAKE_INSTALL_PREFIX"    : "${sourceDir}/bin",
+                "CMAKE_MODULE_PATH"       : "${sourceDir}/cmake",
+                "CMAKE_COLOR_DIAGNOSTICS" : false,
+                "CMAKE_BUILD_TYPE"        : "Debug",
+                "CMAKE_VERBOSE_MAKEFILE"  : true
             }
         },
         {
@@ -60,7 +61,7 @@
             "hidden": true,
             "inherits": "common",
             "toolchainFile": "${sourceDir}/cmake/arm-none-eabi.cmake",
-            "cacheVariables": {"OS":"bare"}
+            "cacheVariables": {"OS":"bare","CMAKE_EXECUTABLE_SUFFIX":".elf"}
         },
         {
             "name": "cortexM0",
