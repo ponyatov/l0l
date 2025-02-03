@@ -1,3 +1,5 @@
+DOCMD = /bin/sh
+
 .PHONY: docker
 docker: Dockerfile $(BIN)/$(BINFILE)
 	docker build -f $< . -t $(MODULE):$(BRANCH)

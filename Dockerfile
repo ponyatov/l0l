@@ -1,4 +1,5 @@
 FROM busybox:glibc
+# FROM frolvlad/alpine-glibc
 
 ENV MODULE=l0l
 
@@ -23,5 +24,5 @@ COPY ./os               /home/os/
 # CMD ["ls","-la","/"]
 # RUN opkg-install python3
 
-CMD ["/bin/sh"]
-# CMD ["/home/bin/l0l_pc_dponyatov","/home/lib/l0l.ini"]
+# CMD ["/bin/sh"]
+CMD ["/home/bin/l0l_pc_dponyatov","/home/lib/l0l.ini"]
