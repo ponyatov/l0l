@@ -1,3 +1,4 @@
 .PHONY: docker
-docker: Dockerfile
-	docker build -f $< .
+docker: Dockerfile $(BIN)/$(BINFILE)
+	docker build -f $< . -t $(MODULE):$(BRANCH)
+	docker run -it --rm     $(MODULE):$(BRANCH)
