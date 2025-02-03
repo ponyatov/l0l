@@ -7,6 +7,11 @@
             "targets":          ["all","install"]
         },
         {
+            "name":              "musl",
+            "configurePreset":   "musl",
+            "targets":          ["all","install"]
+        },
+        {
             "name":              "pillF030",
             "configurePreset":   "pillF030",
             "targets":          ["all","install"]
@@ -52,6 +57,16 @@
             "displayName": "x86_64-linux-gnu",
             "description": "native host",
             "toolchainFile": "${sourceDir}/cmake/x86_64-linux-gnu.cmake",
+            "cacheVariables": {
+                "HW":"pc", "CPU":"i5", "ARCH":"x86_64", "OS":"linux"
+            }
+        },
+        {
+            "name": "musl",
+            "inherits": "common",
+            "displayName": "x86_64-linux-musl",
+            "description": "busybox:musl/docker",
+            "toolchainFile": "${sourceDir}/cmake/x86_64-linux-musl.cmake",
             "cacheVariables": {
                 "HW":"pc", "CPU":"i5", "ARCH":"x86_64", "OS":"linux"
             }
