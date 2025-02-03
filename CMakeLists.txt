@@ -20,7 +20,7 @@ add_executable(${CMAKE_PROJECT_NAME}
     ${CP} ${CH} # parsers
 )
 
-target_link_libraries(${CMAKE_PROJECT_NAME} -static)
+# target_link_libraries(${CMAKE_PROJECT_NAME} -static)
 
 # target install
 set_target_properties(${CMAKE_PROJECT_NAME}

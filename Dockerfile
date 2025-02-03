@@ -1,8 +1,10 @@
-FROM scratch
+FROM busybox
 COPY ./bin/* /bin/
 COPY ./doc/*.md /doc/
 COPY ./inc/* /inc/
 COPY ./lib/* /lib/
 COPY ./src/* /src/
 COPY ./tmp/* /tmp/
-CMD ["/bin/l0l_pc_dponyatov","/lib/l0l.ini"]
+# CMD ["/bin/l0l_pc_dponyatov","/lib/l0l.ini"]
+# CMD ["ls","-la","/"]
+CMD ["/bin/sh"]
