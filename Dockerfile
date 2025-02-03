@@ -1,4 +1,33 @@
-FROM scratch
-COPY ./bin/l0l_pc_* /bin/l0l
-COPY ./lib /
-CMD ["/bin/l0l"]
+FROM alpine
+# FROM busybox:glibc
+# FROM frolvlad/alpine-glibc
+
+USER root
+RUN  apk update && apk upgrade && apk add --no-cache \
+     git make curl cmake g++ ragel
+
+COPY ./bin              /home/bin/
+COPY ./doc/*.md         /home/doc/
+COPY ./doc/*.xml        /home/doc/
+COPY ./doc/logo.png     /home/doc/
+COPY ./etc              /etc/
+COPY ./inc              /home/inc/
+COPY ./lib              /home/lib/
+COPY ./src              /home/src/
+COPY ./tmp/.gitignore   /home/tmp/
+COPY ./tmp/*.?pp        /home/tmp/
+COPY ./CMake*           /home/
+COPY ./cmake            /home/cmake/
+COPY ./Makefile         /home/
+COPY ./mk               /home/mk/
+COPY ./hw               /home/hw/
+COPY ./cpu              /home/cpu/
+COPY ./arch             /home/arch/
+COPY ./os               /home/os/
+
+RUN chown -R nobody:nobody /home
+
+USER    nobody
+WORKDIR /home
+
+CMD ["/bin/sh"]

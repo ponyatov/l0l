@@ -6,15 +6,6 @@ int yyin = 0;
 
 #ifdef POSIX
 
-void nop() {
-    fprintf(stderr, "\tnop\n");
-}
-
-void halt() {
-    fprintf(stderr, "\thalt\n\n");
-    exit(0);
-}
-
 void cli(char* filename) {
     yyfile = filename;
     // open

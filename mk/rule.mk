@@ -1,4 +1,3 @@
 $(BIN)/$(BINFILE): $(C) $(H)
-	cmake         --preset linux
-	cmake --build --preset linux -j
-
+	cmake         --preset musl
+	cmake --build --preset musl -j
