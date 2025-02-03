@@ -6,9 +6,6 @@ USER root
 RUN  apk update && apk upgrade && apk add --no-cache \
      git make curl cmake g++ ragel
 
-USER    nobody
-WORKDIR /home
-
 COPY ./bin              /home/bin/
 COPY ./doc/*.md         /home/doc/
 COPY ./doc/*.xml        /home/doc/
@@ -27,5 +24,10 @@ COPY ./hw               /home/hw/
 COPY ./cpu              /home/cpu/
 COPY ./arch             /home/arch/
 COPY ./os               /home/os/
+
+RUN chown -R nobody:nobody /home
+
+USER    nobody
+WORKDIR /home
 
 CMD ["/bin/sh"]
