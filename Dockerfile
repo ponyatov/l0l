@@ -2,6 +2,10 @@ FROM alpine
 # FROM busybox:glibc
 # FROM frolvlad/alpine-glibc
 
+USER root
+RUN  apk update && apk upgrade && apk add --no-cache \
+     git make curl cmake g++ ragel
+
 USER    nobody
 WORKDIR /home
 
